@@ -3,6 +3,9 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { SecurityService } from "./securityService";
 import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import { environment } from "../../../environments/environment";
+import { Observable } from "rxjs/Observable";
+import { SignalRConnectionInformation } from "../models/signalRConnectionInformation";
+import { AuthenticatedHttpService } from "./authenticatedHttpService";
 
 @Injectable()
 export class PushService {
@@ -11,7 +14,10 @@ export class PushService {
   public orderShipping: BehaviorSubject<string> = new BehaviorSubject(null);
   public orderCreated: BehaviorSubject<string> = new BehaviorSubject(null);
 
-  constructor(private _securityService: SecurityService) {}
+  constructor(
+    private _http: AuthenticatedHttpService,
+    private _securityService: SecurityService
+  ) {}
 
   public start(): void {
     this._hubConnection = new HubConnectionBuilder()
@@ -47,4 +53,12 @@ export class PushService {
 
     this._hubConnection = undefined;
   }
+
+  /*
+  private getConnectionInfo(): Observable<SignalRConnectionInformation> {
+    const requestUrl = `${environment.webApiBaseUrl}config`;
+
+    return this._http.get<SignalRConnectionInformation>(requestUrl);
+  }
+  */
 }
