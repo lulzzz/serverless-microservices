@@ -22,7 +22,7 @@ namespace Serverless
         [FunctionName("SubmitNewOrder")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "orders")]
-            Order newOrder,
+            //Order newOrder,
             HttpRequest req,
 
             [ServiceBus("neworders", Connection="ServiceBus")]
@@ -37,11 +37,12 @@ namespace Serverless
                 return new UnauthorizedResult();
             }
 
+            var newOrder = req.Deserialize<Order>();
             newOrder.Id = Guid.NewGuid();
             newOrder.Created = DateTime.UtcNow;
 
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
-            var userId = identity?.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            var userId = identity.Name;
 
             var newOrderMessage = new NewOrderMessage { Order = newOrder, UserId = userId };
 
