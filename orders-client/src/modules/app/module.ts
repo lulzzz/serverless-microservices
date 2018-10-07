@@ -21,6 +21,7 @@ import { OrderListComponent } from "./components/list/orderList";
 import { PushService } from "./services/pushService";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgProgressModule } from "@ngx-progressbar/core";
+import { NgProgressHttpModule } from "@ngx-progressbar/http";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NgProgressModule } from "@ngx-progressbar/core";
     HttpClientModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgProgressModule.forRoot(),
+    NgProgressHttpModule.forRoot(),
     NgxElectronModule,
     OAuthModule.forRoot()
   ],

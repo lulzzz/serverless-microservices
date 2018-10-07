@@ -49,6 +49,7 @@
     "@angularclass/hmr": "1.2.2",
     "@aspnet/signalr": "1.0.3",
     "@ngx-progressbar/core": "^5.2.0",
+    "@ngx-progressbar/http": "^5.2.0",
     "angular-oauth2-oidc": "^4.0.3",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",
