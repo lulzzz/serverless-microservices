@@ -30,7 +30,7 @@ namespace Serverless
 
             ILogger log)
         {
-            log.LogInformation("CreateNewOrder HTTP trigger function processed a request.");
+            log.LogInformation("SubmitNewOrder HTTP trigger function processed a request.");
 
             if (!await req.CheckAuthorization("api"))
             {

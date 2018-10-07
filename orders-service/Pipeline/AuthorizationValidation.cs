@@ -75,7 +75,15 @@ namespace Serverless
             var handler = new JwtSecurityTokenHandler();
             handler.InboundClaimTypeMap.Clear();
 
-            var user = handler.ValidateToken(jwt, parameters, out var _);
+            ClaimsPrincipal user = null;
+
+            try
+            {
+                user = handler.ValidateToken(jwt, parameters, out var _);
+            }
+            catch
+            {
+            }
 
             Thread.CurrentPrincipal = user;
 
