@@ -1,0 +1,926 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "databaseAccounts_cw_serverless_microservices_name": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "serverfarms_WestEuropePlan_name": {
+            "defaultValue": "WestEuropePlan",
+            "type": "String"
+        },
+        "components_cw_serverless_ai_name": {
+            "defaultValue": "cw-serverless-ai",
+            "type": "String"
+        },
+        "storageAccounts_cwserverlessms_name": {
+            "defaultValue": "cwserverlessms",
+            "type": "String"
+        },
+        "storageAccounts_cwserverlessmsship_name": {
+            "defaultValue": "cwserverlessmsship",
+            "type": "String"
+        },
+        "storageAccounts_cwserverlessmsorders_name": {
+            "defaultValue": "cwserverlessmsorders",
+            "type": "String"
+        },
+        "sites_cw_serverless_microservices_orders_name": {
+            "defaultValue": "cw-serverless-microservices-orders",
+            "type": "String"
+        },
+        "sites_cw_serverless_microservices_shipping_name": {
+            "defaultValue": "cw-serverless-microservices-shipping",
+            "type": "String"
+        },
+        "namespaces_cw_serverless_microservices_name": {
+            "defaultValue": "cw-serverless-microservices",
+            "type": "String"
+        },
+        "databaseAccounts_cw_serverless_microservices_name_1": {
+            "defaultValue": "cw-serverless-microservices",
+            "type": "String"
+        },
+        "config_web_name": {
+            "defaultValue": "web",
+            "type": "String"
+        },
+        "alertrules_Failure_Anomalies___cw_serverless_ai_name": {
+            "defaultValue": "Failure Anomalies - cw-serverless-ai",
+            "type": "String"
+        },
+        "config_web_name_1": {
+            "defaultValue": "web",
+            "type": "String"
+        },
+        "queues_neworders_name": {
+            "defaultValue": "neworders",
+            "type": "String"
+        },
+        "queues_ordersforshipping_name": {
+            "defaultValue": "ordersforshipping",
+            "type": "String"
+        },
+        "queues_shippingsinitiated_name": {
+            "defaultValue": "shippingsinitiated",
+            "type": "String"
+        },
+        "deployments_7859567b802441d9bb5d1ebefd32b3fb_name": {
+            "defaultValue": "7859567b802441d9bb5d1ebefd32b3fb",
+            "type": "String"
+        },
+        "deployments_17b9d75b0eac4dfbb48fe5e2dea3502a_name": {
+            "defaultValue": "17b9d75b0eac4dfbb48fe5e2dea3502a",
+            "type": "String"
+        },
+        "deployments_1c7b251cab6f466daf9f0b2f96162c45_name": {
+            "defaultValue": "1c7b251cab6f466daf9f0b2f96162c45",
+            "type": "String"
+        },
+        "deployments_01d4d05f8cd3499b90cdcf93886fdcf0_name": {
+            "defaultValue": "01d4d05f8cd3499b90cdcf93886fdcf0",
+            "type": "String"
+        },
+        "deployments_f9d4b9fdcf684c8894a153860476abcf_name": {
+            "defaultValue": "f9d4b9fdcf684c8894a153860476abcf",
+            "type": "String"
+        },
+        "deployments_97ff6f55d7204a0c88b82c80ac5e6a58_name": {
+            "defaultValue": "97ff6f55d7204a0c88b82c80ac5e6a58",
+            "type": "String"
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name": {
+            "defaultValue": "RootManageSharedAccessKey",
+            "type": "String"
+        },
+        "hostNameBindings_cw_serverless_microservices_orders.azurewebsites.net_name": {
+            "defaultValue": "cw-serverless-microservices-orders.azurewebsites.net",
+            "type": "String"
+        },
+        "hostNameBindings_cw_serverless_microservices_shipping.azurewebsites.net_name": {
+            "defaultValue": "cw-serverless-microservices-shipping.azurewebsites.net",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.DocumentDB/databaseAccounts/cw-serverless-microservices'.",
+            "type": "Microsoft.DocumentDB/databaseAccounts",
+            "kind": "GlobalDocumentDB",
+            "name": "[parameters('databaseAccounts_cw_serverless_microservices_name_1')]",
+            "apiVersion": "2015-04-08",
+            "location": "West Europe",
+            "tags": {
+                "defaultExperience": "DocumentDB"
+            },
+            "scale": null,
+            "properties": {
+                "databaseAccountOfferType": "Standard",
+                "consistencyPolicy": {
+                    "defaultConsistencyLevel": "Session",
+                    "maxIntervalInSeconds": 5,
+                    "maxStalenessPrefix": 100
+                },
+                "name": "[parameters('databaseAccounts_cw_serverless_microservices_name')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/microsoft.insights/alertrules/Failure Anomalies - cw-serverless-ai'.",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_Failure_Anomalies___cw_serverless_ai_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "tags": {
+                "hidden-link:/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/microsoft.insights/components/cw-serverless-ai": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "name": "[parameters('alertrules_Failure_Anomalies___cw_serverless_ai_name')]",
+                "description": "",
+                "isEnabled": true,
+                "condition": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('microsoft.insights/components', parameters('components_cw_serverless_ai_name'))]",
+                        "metricNamespace": null,
+                        "metricName": "advanced::A3108E3D-5E26-44CF-B232-783F5E20EF10::ewAiAEgAeQBwAGUAcgBpAG8AbgBBAHAAcABsAGkAYwBhAHQAaQBvAG4AUwBpAGQAIgA6AG4AdQBsAGwALAAiAEgAeQBwAGUAcgBpAG8AbgBTAHUAYgBqAGUAYwB0AFMAaQBkACIAOgBuAHUAbABsACwAIgBIAHkAcABlAHIAaQBvAG4ATwBiAHMAZQByAHYAZQByAFMAaQBkACIAOgBuAHUAbABsACwAIgBDAHUAcwB0AG8AbQBlAHIAQQBjAGMAbwB1AG4AdABJAGQAIgA6ACIAMAAwADAAMAAwADAAMAAwAC0AMAAwADAAMAAtADAAMAAwADAALQAwADAAMAAwAC0AMAAwADAAMAAwADAAMAAwADAAMAAwADAAIgAsACIAQQBwAHAAbABpAGMAYQB0AGkAbwBuAE4AYQBtAGUAIgA6AG4AdQBsAGwALAAiAEEAcABwAGwAaQBjAGEAdABpAG8AbgBJAGQAIgA6AG4AdQBsAGwALAAiAFAAcgBvAGYAaQBsAGUASQBkACIAOgAwACwAIgBXAGkAbgBkAG8AdwBTAGkAegBlAEkAbgBNAGkAbgB1AHQAZQBzACIAOgA2ADAALAAiAE0AZQB0AHIAaQBjAE4AYQBtAGUAIgA6ACIAIgAsACIAVABoAHIAZQBzAGgAbwBsAGQAIgA6ADIALgAwACwAIgBBAGwAZQByAHQAVABlAG0AcABsAGEAdABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAE4AYQBtAGUAIgA6ACIAIgAsACIAUgB1AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AIgA6ACIAIgAsACIAUgBlAHMAbwB1AHIAYwBlAEkAZAAiADoAbgB1AGwAbAAsACIAUwB1AGIAcwBjAHIAaQBwAHQAaQBvAG4ASQBkACIAOgBuAHUAbABsACwAIgBBAGcAZwByAGUAZwBhAHQAZQBGAHUAbgBjAHQAaQBvAG4AIgA6ACIAIgAsACIAQwBvAG0AcABhAHIAaQBzAG8AbgBPAHAAZQByAGEAdABvAHIAIgA6ACIAewBcACIAQgBhAHMAZQBsAGkAbgBlAFQAaQBtAGUAcwBwAGEAbgBcACIAOgBcACIAMAAwADoANAAwADoAMAAwAFwAIgAsAFwAIgBJAG4AcwBpAGcAaAB0AHMAUwBlAHIAdgBpAGMAZQBMAGEAZwBcACIAOgBcACIAMAAwADoAMAAwADoAMAAwAFwAIgAsAFwAIgBCAHUAZgBmAGUAcgBUAGkAbQBlAFwAIgA6AFwAIgAwADAAOgAwADEAOgAwADAAXAAiACwAXAAiAEIAbABvAGIAUwB0AG8AcgBhAGcAZQBMAG8AZwBnAGkAbgBnAEUAbgBhAGIAbABlAGQAXAAiADoAZgBhAGwAcwBlACwAXAAiAFUAcwBlAHIAUwB1AHAAcAByAGUAcwBzAGkAbwBuAHMAXAAiADoAbgB1AGwAbAAsAFwAIgBQAHIAbwBmAGkAbABlAEkAZABcACIAOgAwACwAXAAiAEUAbQBhAGkAbABUAHkAcABlAFwAIgA6ADAALABcACIAUgBkAGQARgBhAGkAbAB1AHIAZQBzAFMAcABpAGsAZQBUAGgAcgBlAHMAaABvAGwAZABcACIAOgAzAC4AMAAsAFwAIgBSAGEAdwBQAHIAbwBhAGMAdABpAHYAZQBSAHUAbABlAEMAbwBuAGYAaQBnAFwAIgA6AG4AdQBsAGwAfQAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8AQwB1AHMAdABvAG0AIgA6AGYAYQBsAHMAZQAsACIAQwB1AHMAdABvAG0ARQBtAGEAaQBsAHMARQBuAGMAbwBkAGUAZAAiADoAIgAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8ATwB3AG4AZQByAHMAIgA6AGYAYQBsAHMAZQB9AA=="
+                    },
+                    "operator": "GreaterThan",
+                    "threshold": 2,
+                    "windowSize": "PT1H"
+                },
+                "action": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_cw_serverless_ai_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/microsoft.insights/components/cw-serverless-ai'.",
+            "type": "microsoft.insights/components",
+            "kind": "other",
+            "name": "[parameters('components_cw_serverless_ai_name')]",
+            "apiVersion": "2015-05-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "Application_Type": "other",
+                "Flow_Type": "Redfield",
+                "Request_Source": "IbizaAIExtension",
+                "HockeyAppId": null,
+                "SamplingPercentage": null
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.ServiceBus/namespaces/cw-serverless-microservices'.",
+            "type": "Microsoft.ServiceBus/namespaces",
+            "sku": {
+                "name": "Standard",
+                "tier": "Standard"
+            },
+            "name": "[parameters('namespaces_cw_serverless_microservices_name')]",
+            "apiVersion": "2017-04-01",
+            "location": "West Europe",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "metricId": "[concat('b3a47414-171f-48e3-93f7-ab39117ae927:', parameters('namespaces_cw_serverless_microservices_name'))]",
+                "createdAt": "2018-09-28T18:27:18.157Z",
+                "updatedAt": "2018-09-28T18:27:42.887Z",
+                "serviceBusEndpoint": "[concat('https://', parameters('namespaces_cw_serverless_microservices_name'),'.servicebus.windows.net:443/')]",
+                "status": "Active"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Storage/storageAccounts/cwserverlessmsorders'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_cwserverlessmsorders_name')]",
+            "apiVersion": "2018-07-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Storage/storageAccounts/cwserverlessmsship'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_cwserverlessmsship_name')]",
+            "apiVersion": "2018-07-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Storage/storageAccounts/cwserverlessms'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "name": "[parameters('storageAccounts_cwserverlessms_name')]",
+            "apiVersion": "2018-07-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/serverfarms/WestEuropePlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic",
+                "size": "Y1",
+                "family": "Y",
+                "capacity": 0
+            },
+            "kind": "functionapp",
+            "name": "[parameters('serverfarms_WestEuropePlan_name')]",
+            "apiVersion": "2016-09-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "name": "[parameters('serverfarms_WestEuropePlan_name')]",
+                "workerTierName": null,
+                "adminSiteName": null,
+                "hostingEnvironmentProfile": null,
+                "perSiteScaling": false,
+                "reserved": false,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-shipping'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[parameters('sites_cw_serverless_microservices_shipping_name')]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_cw_serverless_microservices_shipping_name'),'.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_cw_serverless_microservices_shipping_name'),'.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]",
+                "reserved": false,
+                "siteConfig": null,
+                "scmSiteAlsoStopped": false,
+                "hostingEnvironmentProfile": null,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 1536,
+                "dailyMemoryTimeQuota": 0,
+                "cloningInfo": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[parameters('sites_cw_serverless_microservices_orders_name')]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'),'.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'),'.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]",
+                "reserved": false,
+                "siteConfig": null,
+                "scmSiteAlsoStopped": false,
+                "hostingEnvironmentProfile": null,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 1536,
+                "dailyMemoryTimeQuota": 0,
+                "cloningInfo": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.ServiceBus/namespaces/cw-serverless-microservices/AuthorizationRules/RootManageSharedAccessKey'.",
+            "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+            "name": "[concat(parameters('namespaces_cw_serverless_microservices_name'), '/', parameters('AuthorizationRules_RootManageSharedAccessKey_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_cw_serverless_microservices_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.ServiceBus/namespaces/cw-serverless-microservices/queues/neworders'.",
+            "type": "Microsoft.ServiceBus/namespaces/queues",
+            "name": "[concat(parameters('namespaces_cw_serverless_microservices_name'), '/', parameters('queues_neworders_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "lockDuration": "PT30S",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P14D",
+                "deadLetteringOnMessageExpiration": false,
+                "enableBatchedOperations": true,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "maxDeliveryCount": 10,
+                "status": "Active",
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_cw_serverless_microservices_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.ServiceBus/namespaces/cw-serverless-microservices/queues/ordersforshipping'.",
+            "type": "Microsoft.ServiceBus/namespaces/queues",
+            "name": "[concat(parameters('namespaces_cw_serverless_microservices_name'), '/', parameters('queues_ordersforshipping_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "lockDuration": "PT30S",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P14D",
+                "deadLetteringOnMessageExpiration": false,
+                "enableBatchedOperations": true,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "maxDeliveryCount": 10,
+                "status": "Active",
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_cw_serverless_microservices_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.ServiceBus/namespaces/cw-serverless-microservices/queues/shippingsinitiated'.",
+            "type": "Microsoft.ServiceBus/namespaces/queues",
+            "name": "[concat(parameters('namespaces_cw_serverless_microservices_name'), '/', parameters('queues_shippingsinitiated_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "lockDuration": "PT30S",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P14D",
+                "deadLetteringOnMessageExpiration": false,
+                "enableBatchedOperations": true,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "maxDeliveryCount": 10,
+                "status": "Active",
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_cw_serverless_microservices_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-shipping/config/web'.",
+            "type": "Microsoft.Web/sites/config",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_shipping_name'), '/', parameters('config_web_name_1'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "",
+                "windowsFxVersion": null,
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2012",
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$cw-serverless-microservices-shipping",
+                "publishingPassword": null,
+                "appSettings": null,
+                "azureStorageAccounts": {},
+                "metadata": null,
+                "connectionStrings": null,
+                "machineKey": null,
+                "handlerMappings": null,
+                "documentRoot": null,
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "javaVersion": null,
+                "javaContainer": null,
+                "javaContainerVersion": null,
+                "appCommandLine": "",
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "runtimeADUser": null,
+                "runtimeADUserPassword": null,
+                "loadBalancing": "LeastRequests",
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "limits": null,
+                "autoHealEnabled": false,
+                "autoHealRules": null,
+                "tracingOptions": null,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "cors": {
+                    "allowedOrigins": [
+                        "*"
+                    ]
+                },
+                "push": null,
+                "apiDefinition": null,
+                "autoSwapSlotName": null,
+                "localMySqlEnabled": false,
+                "managedServiceIdentityId": null,
+                "xManagedServiceIdentityId": null,
+                "ipSecurityRestrictions": null,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_shipping_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-shipping/deployments/f9d4b9fdcf684c8894a153860476abcf'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_shipping_name'), '/', parameters('deployments_f9d4b9fdcf684c8894a153860476abcf_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_f9d4b9fdcf684c8894a153860476abcf_name')]",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "Push-Deployer",
+                "message": "Created via a push deployment",
+                "start_time": "2018-10-07T14:07:39.8912218Z",
+                "end_time": "2018-10-07T14:07:54.2419736Z",
+                "active": true
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_shipping_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-shipping/deployments/97ff6f55d7204a0c88b82c80ac5e6a58'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_shipping_name'), '/', parameters('deployments_97ff6f55d7204a0c88b82c80ac5e6a58_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_97ff6f55d7204a0c88b82c80ac5e6a58_name')]",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "Push-Deployer",
+                "message": "Created via a push deployment",
+                "start_time": "2018-10-05T23:46:28.6821265Z",
+                "end_time": "2018-10-05T23:46:52.7313764Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_shipping_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-shipping/hostNameBindings/cw-serverless-microservices-shipping.azurewebsites.net'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_shipping_name'), '/', parameters('hostNameBindings_cw_serverless_microservices_shipping.azurewebsites.net_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "siteName": "cw-serverless-microservices-shipping",
+                "domainId": null,
+                "hostNameType": "Verified"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_shipping_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders/config/web'.",
+            "type": "Microsoft.Web/sites/config",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'), '/', parameters('config_web_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "",
+                "windowsFxVersion": null,
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2012",
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$cw-serverless-microservices-orders",
+                "publishingPassword": null,
+                "appSettings": null,
+                "azureStorageAccounts": {},
+                "metadata": null,
+                "connectionStrings": null,
+                "machineKey": null,
+                "handlerMappings": null,
+                "documentRoot": null,
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "javaVersion": null,
+                "javaContainer": null,
+                "javaContainerVersion": null,
+                "appCommandLine": "",
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "runtimeADUser": null,
+                "runtimeADUserPassword": null,
+                "loadBalancing": "LeastRequests",
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "limits": null,
+                "autoHealEnabled": false,
+                "autoHealRules": null,
+                "tracingOptions": null,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "cors": {
+                    "allowedOrigins": [
+                        "*"
+                    ]
+                },
+                "push": null,
+                "apiDefinition": null,
+                "autoSwapSlotName": null,
+                "localMySqlEnabled": false,
+                "managedServiceIdentityId": null,
+                "xManagedServiceIdentityId": null,
+                "ipSecurityRestrictions": null,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_orders_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders/deployments/7859567b802441d9bb5d1ebefd32b3fb'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'), '/', parameters('deployments_7859567b802441d9bb5d1ebefd32b3fb_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_7859567b802441d9bb5d1ebefd32b3fb_name')]",
+                "status": 3,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "Push-Deployer",
+                "message": "Created via a push deployment",
+                "start_time": "2018-10-07T14:41:11.2780156Z",
+                "end_time": "2018-10-07T14:41:17.2416937Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_orders_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders/deployments/17b9d75b0eac4dfbb48fe5e2dea3502a'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'), '/', parameters('deployments_17b9d75b0eac4dfbb48fe5e2dea3502a_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_17b9d75b0eac4dfbb48fe5e2dea3502a_name')]",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "Push-Deployer",
+                "message": "Created via a push deployment",
+                "start_time": "2018-10-07T14:09:03.2476612Z",
+                "end_time": "2018-10-07T14:09:12.7449021Z",
+                "active": true
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_orders_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders/deployments/1c7b251cab6f466daf9f0b2f96162c45'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'), '/', parameters('deployments_1c7b251cab6f466daf9f0b2f96162c45_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_1c7b251cab6f466daf9f0b2f96162c45_name')]",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "Push-Deployer",
+                "message": "Created via a push deployment",
+                "start_time": "2018-10-05T23:45:27.9917216Z",
+                "end_time": "2018-10-05T23:45:36.6454061Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_orders_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourcegroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders/deployments/01d4d05f8cd3499b90cdcf93886fdcf0'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'), '/', parameters('deployments_01d4d05f8cd3499b90cdcf93886fdcf0_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_01d4d05f8cd3499b90cdcf93886fdcf0_name')]",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "Push-Deployer",
+                "message": "Created via a push deployment",
+                "start_time": "2018-10-05T21:50:27.5900981Z",
+                "end_time": "2018-10-05T21:50:48.0207948Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_orders_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b3a47414-171f-48e3-93f7-ab39117ae927/resourceGroups/cw-serverless-microservices/providers/Microsoft.Web/sites/cw-serverless-microservices-orders/hostNameBindings/cw-serverless-microservices-orders.azurewebsites.net'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_cw_serverless_microservices_orders_name'), '/', parameters('hostNameBindings_cw_serverless_microservices_orders.azurewebsites.net_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "siteName": "cw-serverless-microservices-orders",
+                "domainId": null,
+                "hostNameType": "Verified"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_cw_serverless_microservices_orders_name'))]"
+            ]
+        }
+    ]
+}

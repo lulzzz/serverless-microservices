@@ -55,7 +55,6 @@ namespace Serverless
             {
                 // TODO: retry policy...
                 log.LogError(sbx, "Service Bus Error");
-
                 throw;
             }
 
