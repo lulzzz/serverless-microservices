@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Azure.Documents;
+using Serverless.Messages;
 
 namespace Serverless
 {

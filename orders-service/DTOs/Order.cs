@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Serverless.Messages
+namespace Serverless.DTOs
 {
     public class Order
     {

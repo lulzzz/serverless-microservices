@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.Linq;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.WebJobs.Extensions.SignalRService;
+using Serverless.Messages;
 
 namespace Serverless
 {

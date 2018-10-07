@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Serverless
+namespace Serverless.Messages
 {
     public class ShippingCreatedMessage
     {

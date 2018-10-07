@@ -14,19 +14,25 @@ using System.Threading;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.Azure.Documents;
+using AutoMapper;
 
 namespace Serverless
 {
     public static class SubmitNewOrderFunction
     {
+        static SubmitNewOrderFunction()
+        {
+            InitializeMapper();
+        }
+
         [FunctionName("SubmitNewOrder")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "orders")]
-            //Order newOrder,
+            //DTOs.Order newOrder, // there is a bug with deserialization: https://github.com/Azure/azure-functions-host/issues/3370
             HttpRequest req,
 
             [ServiceBus("neworders", Connection="ServiceBus")]
-            IAsyncCollector<NewOrderMessage> messages,
+            IAsyncCollector<Messages.NewOrderMessage> messages,
 
             ILogger log)
         {
@@ -37,14 +43,18 @@ namespace Serverless
                 return new UnauthorizedResult();
             }
 
-            var newOrder = req.Deserialize<Order>();
+            var newOrder = req.Deserialize<DTOs.Order>();
             newOrder.Id = Guid.NewGuid();
             newOrder.Created = DateTime.UtcNow;
 
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
             var userId = identity.Name;
 
-            var newOrderMessage = new NewOrderMessage { Order = newOrder, UserId = userId };
+            var newOrderMessage = new Messages.NewOrderMessage
+            {
+                Order = Mapper.Map<Messages.Order>(newOrder),
+                UserId = userId
+            };
 
             try
             {
@@ -59,6 +69,17 @@ namespace Serverless
             }
 
             return new OkResult();
+        }
+
+        private static void InitializeMapper()
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<DTOs.OrderItem, Messages.OrderItem>();
+                cfg.CreateMap<DTOs.Order, Messages.Order>()
+                    .ForMember(d => d.Items, opt => opt.MapFrom(s => s.Items));
+            });
+            Mapper.AssertConfigurationIsValid();
         }
     }
 }

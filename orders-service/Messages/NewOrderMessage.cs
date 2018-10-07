@@ -1,4 +1,4 @@
-﻿namespace Serverless
+﻿namespace Serverless.Messages
 {
     public class NewOrderMessage
     {

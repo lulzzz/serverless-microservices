@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Serverless.Messages
+namespace Serverless.DTOs
 {
     public class OrderItem
     {
