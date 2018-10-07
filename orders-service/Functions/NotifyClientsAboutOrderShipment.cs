@@ -21,12 +21,11 @@ namespace Serverless
             log.LogInformation($"NotifyClientsAboutOrderShipment SB queue trigger function processed message: {message}");
 
             // NOTE: Group feature not yet available in SignalR binding
-
-            var messageToNotify = new { userId = message.UserId };
+            var messageToNotify = new { userId = message.UserId, orderId = message.OrderId };
 
             await notificationMessages.AddAsync(new SignalRMessage
             {
-                Target = "orderCreated",
+                Target = "shippingInitiated",
                 Arguments = new[] { messageToNotify }
             });
         }

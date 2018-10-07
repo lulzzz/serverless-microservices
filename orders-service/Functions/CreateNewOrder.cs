@@ -14,6 +14,7 @@ using System.Threading;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.Azure.Documents;
+using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 
 namespace Serverless
 {
@@ -30,6 +31,9 @@ namespace Serverless
             [ServiceBus("ordersforshipping", Connection = "ServiceBus")]
             IAsyncCollector<NewOrderMessage> messages,
 
+            [SignalR(HubName="ordersHub", ConnectionStringSetting="SignalR")]
+            IAsyncCollector<SignalRMessage> notificationMessages,
+
             ILogger log)
         {
             log.LogInformation("CreateNewOrder SB queue trigger function processed a request.");
@@ -45,7 +49,6 @@ namespace Serverless
             {
                 // TODO: retry policy...
                 log.LogError(dcx, "Cosmos DB Error");
-
                 throw;
             }
 
@@ -58,9 +61,17 @@ namespace Serverless
             {
                 // TODO: retry policy...
                 log.LogError(sbx, "Service Bus Error");
-
                 throw;
             }
+
+            // NOTE: Group feature not yet available in SignalR binding
+            var messageToNotify = new { userId = message.UserId, orderId = message.Order.Id };
+
+            await notificationMessages.AddAsync(new SignalRMessage
+            {
+                Target = "orderCreated",
+                Arguments = new[] { messageToNotify }
+            });
         }
     }
 }

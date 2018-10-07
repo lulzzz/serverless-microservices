@@ -12,11 +12,31 @@ using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 
 namespace Serverless
 {
-    public static class GetSignalRConfigurationFunction
+    public static class GetSignalRConfigurationFunctions
     {
-        [FunctionName("GetSignalRConfguration")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "signalrconfig")]
+        [FunctionName("GetOrdersHubSignalRConfguration")]
+        public static async Task<IActionResult> GetOrdersHubSignalRConfguration(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "config/ordersHub")]
+            HttpRequest req,
+
+            [SignalRConnectionInfo(HubName = "ordersHub", ConnectionStringSetting="SignalR")]
+            SignalRConnectionInfo connectionInfo,
+
+            ILogger log)
+        {
+            log.LogInformation("GetOrdersHubSignalRConfguration HTTP trigger function processed a request.");
+
+            if (!await req.CheckAuthorization("api"))
+            {
+                return new UnauthorizedResult();
+            }
+
+            return new OkObjectResult(connectionInfo);
+        }
+
+        [FunctionName("GetShippingsHubSignalRConfguration")]
+        public static async Task<IActionResult> GetShippingsHubSignalRConfguration(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "config/shippingsHub")]
             HttpRequest req,
 
             [SignalRConnectionInfo(HubName = "shippingsHub", ConnectionStringSetting="SignalR")]
@@ -24,7 +44,7 @@ namespace Serverless
 
             ILogger log)
         {
-            log.LogInformation("GetSignalRConfigurationFunction# HTTP trigger function processed a request.");
+            log.LogInformation("GetShippingsHubSignalRConfguration HTTP trigger function processed a request.");
 
             if (!await req.CheckAuthorization("api"))
             {
