@@ -3,7 +3,6 @@ import { OAuthService, OAuthModule } from "angular-oauth2-oidc";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { BrowserXhr } from "@angular/http";
 import { RouterModule } from "@angular/router";
 
 import { RootComponent } from "./components/root/root";
@@ -13,7 +12,6 @@ import { HeaderComponent } from "./components/header/header";
 import { MenuComponent } from "./components/menu/menu";
 import { WindowRef } from "./services/windowRef";
 import { PlatformService } from "./services/platformService";
-import { NgProgressCustomBrowserXhr, NgProgressModule } from "ng2-progressbar";
 import { NgxElectronModule } from "ngx-electron";
 import { DesktopIntegrationService } from "./services/desktopIntegrationService";
 import { LoginComponent } from "./components/login/login";
@@ -22,6 +20,7 @@ import { OrdersService } from "./services/ordersService";
 import { OrderListComponent } from "./components/list/orderList";
 import { PushService } from "./services/pushService";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgProgressModule } from "@ngx-progressbar/core";
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
-    NgProgressModule,
+    NgProgressModule.forRoot(),
     NgxElectronModule,
     OAuthModule.forRoot()
   ],
@@ -49,7 +48,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
     PlatformService,
     PushService,
     DesktopIntegrationService,
-    { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

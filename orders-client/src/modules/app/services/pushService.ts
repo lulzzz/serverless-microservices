@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { HubConnection, IHttpConnectionOptions } from "@aspnet/signalr";
 import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs/Observable";
 import { SignalRConnectionInformation } from "../models/signalRConnectionInformation";
 import { HttpClient } from "@angular/common/http";
-import signalR = require("@aspnet/signalr");
+import { BehaviorSubject, Observable } from "rxjs";
+import * as signalR from "@aspnet/signalr";
 
 @Injectable()
 export class PushService {

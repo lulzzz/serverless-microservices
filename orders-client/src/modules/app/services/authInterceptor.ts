@@ -6,7 +6,7 @@ import {
   HttpRequest
 } from "@angular/common/http";
 import { OAuthService } from "angular-oauth2-oidc";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

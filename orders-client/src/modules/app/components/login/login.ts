@@ -1,5 +1,4 @@
 import { Component, HostBinding } from "@angular/core";
-import "rxjs/add/operator/delay";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PushService } from "../../services/pushService";
 import { OAuthService } from "angular-oauth2-oidc";
