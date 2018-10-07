@@ -5,8 +5,8 @@ export const environment = {
   hmr: false,
 
   loginRoute: "/login",
-  webApiBaseUrl: "http://localhost:53278/api/",
-  signalRBaseUrl: "http://localhost:53278/"
+  webApiBaseUrl:
+    "https://cw-serverless-microservices-orders.azurewebsites.net/api/"
 };
 
 export const resourceOwnerConfig: AuthConfig = {

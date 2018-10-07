@@ -5,8 +5,7 @@ export const environment = {
   hmr: false,
 
   loginRoute: "/login",
-  webApiBaseUrl: "http://localhost:7071/api/",
-  signalRBaseUrl: "http://localhost:53278/"
+  webApiBaseUrl: "http://localhost:7071/api/"
 };
 
 export const resourceOwnerConfig: AuthConfig = {
