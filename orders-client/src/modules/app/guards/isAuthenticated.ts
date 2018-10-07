@@ -1,31 +1,38 @@
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import {Observable} from 'rxjs/Rx';
-import {SecurityService} from '../services/securityService';
-import {Injectable} from '@angular/core';
-import {SecurityConfiguration} from '../models/securityConfiguration';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Router
+} from "@angular/router";
+import { Observable } from "rxjs/Rx";
+import { Injectable } from "@angular/core";
+import { OAuthService } from "angular-oauth2-oidc";
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class IsAuthenticated implements CanActivate {
-  constructor(private _securityService: SecurityService, private _router: Router, private _configuration: SecurityConfiguration) {
-    if (!this._configuration.loginRoute) {
-      throw new Error('loginRoute has not been configured.');
+  constructor(private _oauthService: OAuthService, private _router: Router) {
+    if (!environment.loginRoute) {
+      throw new Error("Login route has not been configured.");
     }
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-    return this._securityService.activateSession()
-      .map(result => {
-        if (!result) {
-          this._router.navigate([this._configuration.loginRoute], {
-            queryParams: {
-              redirectTo: state.url
-            }
-          });
-          return false;
+  public canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    const result = this._oauthService.hasValidAccessToken();
+
+    if (!result) {
+      this._router.navigate([environment.loginRoute], {
+        queryParams: {
+          redirectTo: state.url
         }
-
-        return true;
       });
-  }
 
+      return false;
+    }
+
+    return true;
+  }
 }

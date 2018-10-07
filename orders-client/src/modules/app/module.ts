@@ -1,7 +1,9 @@
+import { AuthInterceptor } from "./services/authInterceptor";
+import { OAuthService, OAuthModule } from "angular-oauth2-oidc";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, NgZone } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { BrowserXhr, HttpModule } from "@angular/http";
+import { BrowserXhr } from "@angular/http";
 import { RouterModule } from "@angular/router";
 
 import { RootComponent } from "./components/root/root";
@@ -15,26 +17,11 @@ import { NgProgressCustomBrowserXhr, NgProgressModule } from "ng2-progressbar";
 import { NgxElectronModule } from "ngx-electron";
 import { DesktopIntegrationService } from "./services/desktopIntegrationService";
 import { LoginComponent } from "./components/login/login";
-import { SecurityService } from "./services/securityService";
-import { SecurityConfiguration } from "./models/securityConfiguration";
-import { AuthenticatedHttpService } from "./services/authenticatedHttpService";
-import { AuthenticatedHttpServiceImpl } from "./services/authenticatedHttpServiceImpl";
 import { IsAuthenticated } from "./guards/isAuthenticated";
-import { StorageService } from "./services/storageService";
-import { LocalStorageService } from "./services/localStorageService";
 import { OrdersService } from "./services/ordersService";
 import { OrderListComponent } from "./components/list/orderList";
 import { PushService } from "./services/pushService";
-
-export function securityConfigurationFactory() {
-  const configuration = new SecurityConfiguration();
-  configuration.clientId = "ro.client";
-  configuration.clientSecret = "secret";
-  configuration.loginRoute = "/login";
-  configuration.scope = "ordersapi openid profile";
-
-  return configuration;
-}
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -48,29 +35,25 @@ export function securityConfigurationFactory() {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgProgressModule,
-    NgxElectronModule
+    NgxElectronModule,
+    OAuthModule.forRoot()
   ],
   bootstrap: [RootComponent],
   providers: [
     WindowRef,
-    SecurityService,
-    { provide: StorageService, useClass: LocalStorageService },
+    OAuthService,
     OrdersService,
     PlatformService,
     PushService,
     DesktopIntegrationService,
     { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr },
     {
-      provide: AuthenticatedHttpService,
-      useClass: AuthenticatedHttpServiceImpl
-    },
-    SecurityService,
-    {
-      provide: SecurityConfiguration,
-      useFactory: securityConfigurationFactory
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     },
     IsAuthenticated
   ]

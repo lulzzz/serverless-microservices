@@ -34,7 +34,7 @@ namespace Serverless
         {
             log.LogInformation("CreateNewOrder SB queue trigger function processed a request.");
 
-            // TODO: talk to other systems, do checks etc. ...
+            // TODO: talk to other systems, do checks etc. ... - the REAL work :-)
 
             try
             {

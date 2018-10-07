@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { SecurityService } from "./securityService";
-import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
+import { HubConnection, IHttpConnectionOptions } from "@aspnet/signalr";
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs/Observable";
 import { SignalRConnectionInformation } from "../models/signalRConnectionInformation";
-import { AuthenticatedHttpService } from "./authenticatedHttpService";
+import { HttpClient } from "@angular/common/http";
+import signalR = require("@aspnet/signalr");
 
 @Injectable()
 export class PushService {
@@ -14,36 +14,38 @@ export class PushService {
   public orderShipping: BehaviorSubject<string> = new BehaviorSubject(null);
   public orderCreated: BehaviorSubject<string> = new BehaviorSubject(null);
 
-  constructor(
-    private _http: AuthenticatedHttpService,
-    private _securityService: SecurityService
-  ) {}
+  constructor(private _http: HttpClient) {}
 
   public start(): void {
-    this._hubConnection = new HubConnectionBuilder()
-      .withUrl(
-        environment.signalRBaseUrl +
-          "ordersHub" +
-          "?authorization=" +
-          this._securityService.accessToken
-      )
-      .configureLogging(LogLevel.Information)
-      .build();
+    this.getConnectionInfo().subscribe(config => {
+      console.log(`Received info for endpoint ${config.url}`);
 
-    this._hubConnection.on("orderCreated", () => {
-      this.orderCreated.next(null);
+      const options: IHttpConnectionOptions = {
+        accessTokenFactory: () => config.accessToken
+      };
+
+      this._hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl(config.url, options)
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+      this._hubConnection
+        .start()
+        .then(() => {
+          console.log("SignalR connection established.");
+
+          this._hubConnection.on("orderCreated", () => {
+            this.orderCreated.next(null);
+          });
+
+          this._hubConnection.on("shippingCreated", orderId => {
+            this.orderShipping.next(orderId);
+          });
+        })
+        .catch(err =>
+          console.error("SignalR connection not established. " + err)
+        );
     });
-
-    this._hubConnection.on("shippingCreated", orderId => {
-      this.orderShipping.next(orderId);
-    });
-
-    this._hubConnection
-      .start()
-      .then(() => console.log("SignalR connection established."))
-      .catch(err =>
-        console.error("SignalR connection not established. " + err)
-      );
   }
 
   public stop(): void {
@@ -54,11 +56,9 @@ export class PushService {
     this._hubConnection = undefined;
   }
 
-  /*
   private getConnectionInfo(): Observable<SignalRConnectionInformation> {
-    const requestUrl = `${environment.webApiBaseUrl}config`;
+    const requestUrl = `${environment.webApiBaseUrl}signalrconfig`;
 
     return this._http.get<SignalRConnectionInformation>(requestUrl);
   }
-  */
 }

@@ -1,15 +1,13 @@
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
-import { AuthenticatedHttpService } from "./authenticatedHttpService";
 import { environment } from "../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class OrdersService {
-  constructor(private _http: AuthenticatedHttpService) {}
+  constructor(private _http: HttpClient) {}
 
   public getOrders() {
-    return this._http
-      .get(environment.webApiBaseUrl + "orders")
-      .map(result => result.json());
+    return this._http.get<any>(environment.webApiBaseUrl + "orders");
   }
 }
