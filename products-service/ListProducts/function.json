@@ -1,0 +1,27 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get", "post"],
+      "route": "products"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "products",
+      "databaseName": "productsservice",
+      "collectionName": "data",
+      "sqlQuery": "SELECT c.id, c.name, c.description from c where c.onStock = true",
+      "connectionStringSetting": "CosmosDB",
+      "direction": "in"
+    }
+  ]
+}
