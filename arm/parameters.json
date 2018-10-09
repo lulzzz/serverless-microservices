@@ -23,7 +23,16 @@
         "sites_cw_serverless_microservices_orders_name": {
             "value": null
         },
+        "storageAccounts_cwserverlessmsproducts_name": {
+            "value": null
+        },
         "sites_cw_serverless_microservices_shipping_name": {
+            "value": null
+        },
+        "sites_cw_serverless_microservices_products_name": {
+            "value": null
+        },
+        "searchServices_cw_serverless_microservices_name": {
             "value": null
         },
         "namespaces_cw_serverless_microservices_name": {
@@ -38,7 +47,13 @@
         "alertrules_Failure_Anomalies___cw_serverless_ai_name": {
             "value": null
         },
+        "components_cw_serverless_microservices_products_name": {
+            "value": null
+        },
         "config_web_name_1": {
+            "value": null
+        },
+        "config_web_name_2": {
             "value": null
         },
         "queues_neworders_name": {
@@ -50,7 +65,10 @@
         "queues_shippingsinitiated_name": {
             "value": null
         },
-        "deployments_7859567b802441d9bb5d1ebefd32b3fb_name": {
+        "alertrules_Failure_Anomalies___cw_serverless_microservices_products_name": {
+            "value": null
+        },
+        "deployments_4e77b83aaf184cd296368394c02da73d_name": {
             "value": null
         },
         "deployments_17b9d75b0eac4dfbb48fe5e2dea3502a_name": {
@@ -62,10 +80,19 @@
         "deployments_01d4d05f8cd3499b90cdcf93886fdcf0_name": {
             "value": null
         },
+        "deployments_8d21dfb60a384b3cbef978c91424f37d_name": {
+            "value": null
+        },
         "deployments_f9d4b9fdcf684c8894a153860476abcf_name": {
             "value": null
         },
         "deployments_97ff6f55d7204a0c88b82c80ac5e6a58_name": {
+            "value": null
+        },
+        "deployments_65559e2550ab4d49b9a017908ea3d8f4_name": {
+            "value": null
+        },
+        "deployments_f30ffdff785446f68ec91f60a0c718d9_name": {
             "value": null
         },
         "AuthorizationRules_RootManageSharedAccessKey_name": {
@@ -75,6 +102,9 @@
             "value": null
         },
         "hostNameBindings_cw_serverless_microservices_shipping.azurewebsites.net_name": {
+            "value": null
+        },
+        "hostNameBindings_cw_serverless_microservices_products.azurewebsites.net_name": {
             "value": null
         }
     }
