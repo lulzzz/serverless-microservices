@@ -7,9 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Serverless
 {
-    public static class ProcessOrderFunction
+    public static class CreateShipmentFunction
     {
-        [FunctionName("ProcessOrder")]
+        [FunctionName("CreateShipment")]
         public static async Task Run(
             [ServiceBusTrigger("ordersforshipping", Connection = "ServiceBus")]
             NewOrderMessage message,
